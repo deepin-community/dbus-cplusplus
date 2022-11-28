@@ -5,3 +5,4 @@
 05_fix_glibmm_ftbfs.patch
 06_fix_gcc-7_ftbfs.patch
 07_fix_mutex_ftbfs.patch
+08_fix_gcc-12.patch
