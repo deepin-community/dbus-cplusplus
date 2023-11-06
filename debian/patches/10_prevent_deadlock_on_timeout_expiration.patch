@@ -1,0 +1,16 @@
+Description: Prevent deadlock on timeout expiration
+Author: Oleg Kyreiev <oleg.kyreiev@harmonicinc.com>
+Bug-Debian: https://bugs.debian.org/956114
+Forwarded: https://sourceforge.net/p/dbus-cpluscplus/bugs/24/
+Last-Update: 2020-04-06
+
+--- a/src/eventloop.cpp
++++ b/src/eventloop.cpp
+@@ -110,6 +110,7 @@ void DefaultMutex::unlock()
+ }
+ 
+ DefaultMainLoop::DefaultMainLoop() :
++  _mutex_t(true),
+   _mutex_w(true)
+ {
+ }

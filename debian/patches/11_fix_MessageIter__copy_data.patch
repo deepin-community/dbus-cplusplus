@@ -1,0 +1,49 @@
+Description: MessageIter: handle nested dicts in copy_data
+ MessageIter::copy_data is calling dbus_message_iter_open_container (in
+ libdbus) with an invalid |contained_signature| argument when |type| is
+ complex. This triggers an assertion failure when the args are checked.
+ .
+ The comments for dbus_message_iter_open_container say: "For variants,
+ the contained_signature should be the type of the single value inside
+ the variant. For structs and dict entries, contained_signature should be
+ NULL; it will be set to whatever types you write into the struct. For
+ arrays, contained_signature should be the type of the array elements."
+ .
+ However, the existing code only follows this guideline for arrays. It
+ does the opposite of what is specified (passing NULL when a type
+ signature string is required and vice versa) for variants, structs, and
+ dict entries.
+ .
+ This issue was identified and this fix proposed in the upstream issue
+ tracker (see
+ http://sourceforge.net/tracker/?func=detail&aid=3151818&group_id=236997&atid=1101682),
+ but the fix has not yet been applied upstream and the issue remains open.
+ .
+ This issue was causing cashewd to abort when making a GetProperties
+ D-Bus call to flimflam's Device interface because of the nesting in the
+ newly added Cellular.SIMLockStatus property (see issue 11293).
+ .
+ BUG=chromium-os:13850
+ TEST=manual testing on device
+ .
+ Change-Id: Ia29dc64dd9f7627413fc1c1f1fbf8d516336447c
+ .
+ Review URL: http://codereview.chromium.org/6820045
+Origin: vendor, https://chromium.googlesource.com/chromiumos/third_party/dbus-cplusplus/+/32fe2ce6a60f6f9e5771c639598050798a4feae8
+Author: Vince Laviano <vlaviano@chromium.org>
+Bug-Ubuntu: https://bugs.launchpad.net/ubuntu/+source/dbus-c++/+bug/1098723
+Forwarded: https://sourceforge.net/p/dbus-cpluscplus/bugs/5/
+Last-Update: 2011-04-11
+
+--- a/src/message.cpp
++++ b/src/message.cpp
+@@ -350,7 +350,8 @@
+       (
+         (DBusMessageIter *) & (to._iter),
+         from.type(),
+-        from.type() == DBUS_TYPE_VARIANT ? NULL : sig,
++        from.type() == DBUS_TYPE_DICT_ENTRY ||
++        from.type() == DBUS_TYPE_STRUCT ? NULL : sig,
+         (DBusMessageIter *) & (to_container._iter)
+       );
+ 
