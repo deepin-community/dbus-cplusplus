@@ -2,7 +2,7 @@ Description: Avoid relying on max host name length
  Fixes FTBFS on Debian GNU/kFreeBSD.
 Author: Robert Millan <rmh.debian@aybabtu.com>
 Bug-Debian: http://bugs.debian.org/542887
-Last-Update: 2011-12-09
+Last-Update: 2023-02-08
 
 --- a/examples/echo/echo-server.cpp
 +++ b/examples/echo/echo-server.cpp
@@ -39,7 +39,7 @@ Last-Update: 2011-12-09
  echo-server-glue.h: echo-introspect.xml
 --- /dev/null
 +++ b/examples/echo/xgethostname.c
-@@ -0,0 +1,82 @@
+@@ -0,0 +1,83 @@
 +/* xgethostname.c -- return current hostname with unlimited length
 +
 +   Copyright (C) 1992, 1996, 2000, 2001, 2003, 2004, 2005, 2006 Free
@@ -66,6 +66,7 @@ Last-Update: 2011-12-09
 +#include "xgethostname.h"
 +
 +#include <stdlib.h>
++#include <stdio.h>
 +#include <errno.h>
 +#include <unistd.h>
 +
@@ -169,7 +170,7 @@ Last-Update: 2011-12-09
  	$(ecore_LIBS)
 --- /dev/null
 +++ b/examples/echo_ecore/xgethostname.c
-@@ -0,0 +1,82 @@
+@@ -0,0 +1,83 @@
 +/* xgethostname.c -- return current hostname with unlimited length
 +
 +   Copyright (C) 1992, 1996, 2000, 2001, 2003, 2004, 2005, 2006 Free
@@ -196,6 +197,7 @@ Last-Update: 2011-12-09
 +#include "xgethostname.h"
 +
 +#include <stdlib.h>
++#include <stdio.h>
 +#include <errno.h>
 +#include <unistd.h>
 +
