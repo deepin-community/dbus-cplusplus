@@ -6,3 +6,7 @@
 06_fix_gcc-7_ftbfs.patch
 07_fix_mutex_ftbfs.patch
 08_fix_gcc-12.patch
+09_fix_build_order_and_linking.patch
+10_prevent_deadlock_on_timeout_expiration.patch
+11_fix_MessageIter__copy_data.patch
+12_autoconf_update.patch

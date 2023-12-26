@@ -1,3 +1,39 @@
+dbus-c++ (0.9.0-12) unstable; urgency=medium
+
+  * QA upload.
+  * Remove test dependency libgtkmm-2.4-dev. (Closes: #1041790)
+
+ -- Bastian Germann <bage@debian.org>  Wed, 02 Aug 2023 11:22:10 +0200
+
+dbus-c++ (0.9.0-11) unstable; urgency=medium
+
+  * QA upload.
+  * Add 09_fix_build_order_and_linking.patch to change the order in which the
+    libraries are built and to fix the underlinking issue. (Closes: #889114)
+  * Add 10_prevent_deadlock_on_timeout_expiration.patch to prevent a possible
+    deadlock. (Closes: #956114)
+  * Add 11_fix_MessageIter__copy_data.patch to fix copying nested types in
+    dicts and structs. (LP: #1098723)
+  * Add 12_autoconf_update.patch to avoid hard-to-read deprecation warnings
+    that clutter the build logs.
+  * Update 01_host_name_max.patch because stdio.h is needed by perror().
+  * debian/control:
+    + Add libdbus-1-dev to libdbus-c++-dev's dependencies. (Closes: #1018771)
+    + Fix spelling and capitalization of the package descriptions.
+    + Update Homepage to use https URL.
+    + Mark libdbus-c++-bin as Multi-Arch: allowed. It fixes a regression since
+      version 0.9.0-9.
+    + Add Rules-Requires-Root: no.
+    + Bump Standards-Version to 4.6.2, no changes needed.
+  * debian/copyright:
+    + Add Upstream-Contact, information copied from configure.ac.
+    + Update packaging copyright according to debian/changelog and
+      debian/patches.
+  * debian/watch: Use uscan version 4.
+  * Add debian/upstream/metadata.
+
+ -- Thomas Uhle <uhle@cpan.org>  Wed, 22 Feb 2023 22:55:50 +0100
+
 dbus-c++ (0.9.0-10) unstable; urgency=medium
 
   * QA upload.

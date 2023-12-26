@@ -1,5 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
 Upstream-Name: dbus-c++
+Upstream-Contact: Andreas Volz <andreas.volz@tux-style.com>
 Source: https://sourceforge.net/projects/dbus-cplusplus/
 
 Files: *
@@ -13,7 +14,15 @@ License: GPL-3+
 
 Files: debian/*
 Copyright: 2009 Robert Millan <rmh.debian@aybabtu.com>
-           2011 Vincent Cheng <vcheng@debian.org>
+           2011-2015 Vincent Cheng <vcheng@debian.org>
+           2011 Vince Laviano <vlaviano@chromium.org>
+           2015, 2018 Peter Williams <peter@newton.cx>
+           2018 John Paul Adrian Glaubitz <glaubitz@physik.fu-berlin.de>
+           2020 Oleg Kyreiev <oleg.kyreiev@harmonicinc.com>
+           2020 Peter Michael Green <plugwash@debian.org>
+           2022 Boyuan Yang <byang@debian.org>
+           2022 Håvard F. Aasen <havard.f.aasen@pfft.no>
+           2022-2023 Thomas Uhle <thomas.uhle@mailbox.tu-dresden.de>
 License: GPL-3+
 
 License: GPL-3+
